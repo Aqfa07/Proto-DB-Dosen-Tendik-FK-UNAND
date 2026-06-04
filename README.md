@@ -132,8 +132,8 @@ Database Dosen dan Tendik/
 ### 1. Clone Repository
 
 ```bash
-git clone https://github.com/Aqfa07/faculty-database-system.git
-cd "faculty-database-system"
+git clone https://github.com/Aqfa07/Proto-DB-Dosen-Tendik-FK-UNAND.git
+cd "Proto-DB-Dosen-Tendik-FK-UNAND"
 ```
 
 ---
