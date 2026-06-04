@@ -1,0 +1,616 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    /* === Premium Color Palette === */
+    --background: 220 25% 97%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    /* Vibrant indigo-blue as primary */
+    --primary: 234 89% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 20% 95%;
+    --secondary-foreground: 222 47% 20%;
+
+    --muted: 220 20% 95%;
+    --muted-foreground: 220 14% 52%;
+
+    --accent: 234 89% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 20% 90%;
+    --input: 220 20% 90%;
+    --ring: 234 89% 60%;
+
+    --radius: 0.875rem;
+
+    /* Custom shadow tokens */
+    --shadow-xs: 0 1px 2px 0 rgba(0,0,0,.05);
+    --shadow-sm: 0 1px 3px 0 rgba(0,0,0,.08), 0 1px 2px -1px rgba(0,0,0,.06);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,.07), 0 2px 4px -2px rgba(0,0,0,.05);
+    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,.07), 0 4px 6px -4px rgba(0,0,0,.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0,0,0,.08), 0 8px 10px -6px rgba(0,0,0,.06);
+    --shadow-2xl: 0 25px 50px -12px rgba(0,0,0,.15);
+
+    /* Sidebar */
+    --sidebar-bg: 222 47% 11%;
+    --sidebar-accent: 234 89% 65%;
+    --sidebar-text: 220 20% 80%;
+    --sidebar-text-active: 0 0% 100%;
+  }
+
+  .dark {
+    --background: 222 47% 8%;
+    --foreground: 210 40% 96%;
+
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 96%;
+
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 96%;
+
+    --primary: 234 89% 65%;
+    --primary-foreground: 222 47% 8%;
+
+    --secondary: 222 35% 18%;
+    --secondary-foreground: 210 40% 90%;
+
+    --muted: 222 35% 18%;
+    --muted-foreground: 215 20% 58%;
+
+    --accent: 234 89% 65%;
+    --accent-foreground: 222 47% 8%;
+
+    --destructive: 0 62% 40%;
+    --destructive-foreground: 210 40% 96%;
+
+    --border: 222 35% 20%;
+    --input: 222 35% 20%;
+    --ring: 234 89% 65%;
+  }
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+    box-sizing: border-box;
+  }
+
+  html {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11", "rlig" 1, "calt" 1;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer components {
+
+/* =========================================
+   SIDEBAR — Dark, Premium Feel
+   ========================================= */
+.sidebar-premium {
+  background: linear-gradient(165deg, #1e2a45 0%, #141d30 60%, #0f1729 100%);
+  border-right: 1px solid rgba(99, 128, 255, 0.12);
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.25);
+}
+
+.sidebar-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: hsl(220, 20%, 68%);
+  transition: all 0.2s ease;
+  position: relative;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.sidebar-nav-item:hover {
+  background: rgba(108, 131, 255, 0.12);
+  color: #c5cdff;
+}
+
+.sidebar-nav-item.active {
+  background: linear-gradient(135deg, rgba(99, 128, 255, 0.25), rgba(99, 128, 255, 0.12));
+  color: #ffffff;
+  box-shadow: inset 0 0 0 1px rgba(99, 128, 255, 0.35);
+}
+
+.sidebar-nav-item.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 65%;
+  background: linear-gradient(to bottom, #6d83ff, #a78bfa);
+  border-radius: 0 4px 4px 0;
+}
+
+/* =========================================
+   CARDS — Premium Card System
+   ========================================= */
+.card-premium {
+  background: #ffffff;
+  border: 1px solid rgba(220, 225, 240, 0.8);
+  border-radius: 1.25rem;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    0 4px 12px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.25s ease, transform 0.2s ease;
+}
+
+.card-premium:hover {
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.05),
+    0 8px 24px rgba(0, 0, 0, 0.07);
+}
+
+.dark .card-premium {
+  background: hsl(222 47% 13%);
+  border-color: rgba(99, 128, 255, 0.08);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.2),
+    0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* =========================================
+   GLASS — Refined Glassmorphism
+   ========================================= */
+.glass {
+  background-color: rgba(255, 255, 255, 0.72);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  backdrop-filter: blur(20px) saturate(1.4);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow:
+    0 1px 1px rgba(0, 0, 0, 0.03),
+    0 4px 16px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.dark .glass {
+  background-color: rgba(18, 27, 56, 0.65);
+  border-color: rgba(99, 128, 255, 0.1);
+  box-shadow:
+    0 1px 1px rgba(0, 0, 0, 0.15),
+    0 4px 16px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+/* =========================================
+   INPUTS — Polished Form Controls
+   ========================================= */
+.input-premium {
+  width: 100%;
+  background: #f8f9fc;
+  border: 1.5px solid #e4e8f0;
+  border-radius: 0.75rem;
+  padding: 0.6rem 0.85rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: hsl(222, 47%, 11%);
+  transition: all 0.2s ease;
+  outline: none;
+  font-family: 'Inter', sans-serif;
+}
+
+.input-premium:focus {
+  border-color: #6d83ff;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(109, 131, 255, 0.12);
+}
+
+.input-premium::placeholder {
+  color: #a8b0c4;
+  font-weight: 400;
+}
+
+.dark .input-premium {
+  background: hsl(222, 47%, 15%);
+  border-color: hsl(222, 35%, 22%);
+  color: hsl(210, 40%, 92%);
+}
+
+.dark .input-premium:focus {
+  border-color: #6d83ff;
+  background: hsl(222, 47%, 17%);
+  box-shadow: 0 0 0 3px rgba(109, 131, 255, 0.18);
+}
+
+/* =========================================
+   BUTTONS — Premium Interactive States
+   ========================================= */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.6rem 1.2rem;
+  background: linear-gradient(135deg, #5a7dff 0%, #4f46e5 100%);
+  color: white;
+  border-radius: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.35), 0 1px 2px rgba(0,0,0,0.1);
+  white-space: nowrap;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.45), 0 2px 4px rgba(0,0,0,0.1);
+  background: linear-gradient(135deg, #6b8fff 0%, #5c54f0 100%);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(79, 70, 229, 0.3);
+}
+
+.btn-primary:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* =========================================
+   TABLE — Modern Table Styling
+   ========================================= */
+.table-premium thead th {
+  padding: 0.85rem 1.25rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #7c87a5;
+  background: #f6f8fd;
+  border-bottom: 1px solid #e8ecf5;
+}
+
+.dark .table-premium thead th {
+  background: hsl(222, 47%, 13%);
+  color: #7c87a5;
+  border-bottom-color: hsl(222, 35%, 22%);
+}
+
+.table-premium tbody tr {
+  transition: background 0.15s ease;
+}
+
+.table-premium tbody tr:hover {
+  background: #f2f5ff;
+}
+
+.dark .table-premium tbody tr:hover {
+  background: hsl(222, 47%, 16%);
+}
+
+.table-premium tbody td {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #f0f2f9;
+  vertical-align: middle;
+}
+
+.dark .table-premium tbody td {
+  border-bottom-color: hsl(222, 35%, 20%);
+}
+
+/* =========================================
+   BADGES — Status Indicators
+   ========================================= */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.badge-blue {
+  background: #eff2ff;
+  color: #4f46e5;
+  border: 1px solid #d9dcff;
+}
+
+.badge-amber {
+  background: #fffbeb;
+  color: #b45309;
+  border: 1px solid #fde68a;
+}
+
+.badge-green {
+  background: #f0fdf4;
+  color: #16a34a;
+  border: 1px solid #bbf7d0;
+}
+
+.dark .badge-blue {
+  background: rgba(79, 70, 229, 0.15);
+  color: #a5b4fc;
+  border-color: rgba(79, 70, 229, 0.25);
+}
+
+.dark .badge-amber {
+  background: rgba(180, 83, 9, 0.15);
+  color: #fbbf24;
+  border-color: rgba(180, 83, 9, 0.25);
+}
+
+/* =========================================
+   PAGE HEADER
+   ========================================= */
+.page-header-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #1a2340;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+}
+
+.dark .page-header-title {
+  color: #e8edf5;
+}
+
+.page-header-subtitle {
+  font-size: 0.875rem;
+  color: #7c87a5;
+  font-weight: 400;
+  margin-top: 0.35rem;
+}
+
+/* =========================================
+   TOPBAR
+   ========================================= */
+.topbar-premium {
+  background: rgba(255, 255, 255, 0.82);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(220, 225, 245, 0.7);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.04), 0 4px 20px rgba(0,0,0,0.04);
+  border-radius: 1rem;
+}
+
+.dark .topbar-premium {
+  background: rgba(20, 29, 56, 0.82);
+  border-color: rgba(99, 128, 255, 0.1);
+}
+
+/* =========================================
+   SCROLLBAR — Refined
+   ========================================= */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(99, 128, 255, 0.25);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 128, 255, 0.45);
+}
+
+/* =========================================
+   STAT CARDS
+   ========================================= */
+.stat-card {
+  background: #ffffff;
+  border: 1px solid #eaecf5;
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.dark .stat-card {
+  background: hsl(222, 47%, 13%);
+  border-color: hsl(222, 35%, 20%);
+}
+
+/* =========================================
+   ANIMATIONS
+   ========================================= */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(90deg, #f0f2f9 25%, #e4e7f2 50%, #f0f2f9 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+  border-radius: 0.5rem;
+}
+
+.dark .skeleton-shimmer {
+  background: linear-gradient(90deg, hsl(222,47%,16%) 25%, hsl(222,47%,19%) 50%, hsl(222,47%,16%) 75%);
+  background-size: 200% 100%;
+}
+
+/* =========================================
+   MODAL — Elevated Design
+   ========================================= */
+.modal-overlay {
+  background: rgba(10, 15, 35, 0.55);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.modal-content {
+  background: #ffffff;
+  border-radius: 1.5rem;
+  box-shadow:
+    0 0 0 1px rgba(99, 128, 255, 0.08),
+    0 8px 16px rgba(0,0,0,0.06),
+    0 24px 48px rgba(0,0,0,0.12);
+}
+
+.dark .modal-content {
+  background: hsl(222, 47%, 12%);
+}
+
+/* =========================================
+   SECTION DIVIDERS IN MODALS
+   ========================================= */
+.form-section-title {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #6d83ff;
+  margin-bottom: 0.85rem;
+}
+
+.form-section-divider {
+  border-top: 1px solid #eef0f8;
+  padding-top: 1.25rem;
+  margin-top: 1.25rem;
+}
+
+.dark .form-section-divider {
+  border-top-color: hsl(222, 35%, 22%);
+}
+
+/* =========================================
+   SEARCH INPUT
+   ========================================= */
+.search-input {
+  width: 100%;
+  padding: 0.6rem 1rem 0.6rem 2.75rem;
+  background: #f6f8fd;
+  border: 1.5px solid #e4e8f3;
+  border-radius: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #1a2340;
+  outline: none;
+  transition: all 0.2s ease;
+  font-family: 'Inter', sans-serif;
+}
+
+.search-input:focus {
+  background: #fff;
+  border-color: #6d83ff;
+  box-shadow: 0 0 0 3px rgba(109, 131, 255, 0.12);
+}
+
+.search-input::placeholder {
+  color: #adb5cc;
+}
+
+.dark .search-input {
+  background: hsl(222, 47%, 15%);
+  border-color: hsl(222, 35%, 22%);
+  color: hsl(210, 40%, 92%);
+}
+
+.dark .search-input:focus {
+  background: hsl(222, 47%, 17%);
+  border-color: #6d83ff;
+}
+
+/* =========================================
+   LABEL
+   ========================================= */
+.form-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #6b7694;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.35rem;
+}
+
+.dark .form-label {
+  color: #8898b8;
+}
+
+/* =========================================
+   PAGINATION
+   ========================================= */
+.pagination-btn {
+  padding: 0.5rem 1.1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #4b5680;
+  background: #ffffff;
+  border: 1.5px solid #e4e8f3;
+  border-radius: 0.65rem;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  font-family: 'Inter', sans-serif;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background: #f2f4ff;
+  border-color: #c5ceff;
+  color: #4f46e5;
+}
+
+.pagination-btn:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+.dark .pagination-btn {
+  background: hsl(222, 47%, 15%);
+  border-color: hsl(222, 35%, 22%);
+  color: #8898b8;
+}
+
+.dark .pagination-btn:hover:not(:disabled) {
+  background: hsl(222, 47%, 18%);
+  border-color: #6d83ff;
+  color: #a5b4fc;
+}
+
+} /* End of @layer components */

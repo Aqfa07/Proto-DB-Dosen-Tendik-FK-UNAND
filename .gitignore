@@ -1,0 +1,39 @@
+# === FILE SENSITIF & KONFIGURASI LOKAL ===
+.env
+.env.*
+*.key
+
+# === FILE DATA EXCEL / CSV (Opsional: hapus baris ini jika ingin ikut di-commit) ===
+*.xlsx
+*.csv
+*.xls
+
+# === FILE PDF LAPORAN ===
+*.pdf
+
+# === NODE MODULES (Root) ===
+node_modules/
+
+# === FILE SCRIPT SEMENTARA ===
+capture.js
+generate_pdf.js
+loadtest.js
+test_import_and_capture.js
+progress_report.html
+
+# === FILE TES / ANALISIS SEMENTARA ===
+"Analisis Kolom File Excel Ke Database - Analisis Kolom File Excel Ke Database.csv"
+
+# === SCREENSHOT (Opsional: hapus baris ini jika ingin screenshot tetap di repo) ===
+# screenshot_*.png
+
+# === OS SPECIFIC ===
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# === IDE / EDITOR ===
+.vscode/
+.idea/
+*.swp
+*.swo
